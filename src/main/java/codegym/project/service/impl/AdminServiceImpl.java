@@ -30,5 +30,5 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void remove(Long id) {
         adminRepository.deleteById(id);
-    }
+    }   
 }
