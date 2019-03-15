@@ -1,28 +1,26 @@
 package codegym.project.service;
 
 import codegym.project.model.Image;
-import codegym.project.repository.ImageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 public interface ImageService {
 
+    //Hàm trả về List Ảnh.
     List<Image> findAll();
 
+    //Hàm trả về Ảnh với tên truyền vào.
     Resource findOneImage(String name);
 
+    //Hàm thêm Ảnh.
     void create(MultipartFile file) throws IOException;
 
+    //Hàm xóa Ảnh.
     void delete(String name) throws IOException;
 
+    //Hàm trả về Ảnh có ID truyền vào.
     Image findById(Long id);
 }

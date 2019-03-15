@@ -1,14 +1,7 @@
 package codegym.project;
 
-import codegym.project.repository.ImageRepository;
-import codegym.project.service.AdminService;
-import codegym.project.service.ImageService;
-import codegym.project.service.SongCategoryService;
-import codegym.project.service.SongService;
-import codegym.project.service.impl.AdminServiceImpl;
-import codegym.project.service.impl.ImageServiceImpl;
-import codegym.project.service.impl.SongCategoryServiceImpl;
-import codegym.project.service.impl.SongServiceImpl;
+import codegym.project.service.*;
+import codegym.project.service.impl.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -38,5 +31,10 @@ public class ProjectApplication {
     @Bean
     public ImageService imageService() {
         return new ImageServiceImpl();
+    }
+
+    @Bean
+    public Mp3FileService mp3FileService() {
+        return new Mp3FileServiceImpl();
     }
 }

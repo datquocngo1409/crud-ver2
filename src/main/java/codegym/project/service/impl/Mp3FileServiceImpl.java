@@ -1,8 +1,8 @@
 package codegym.project.service.impl;
 
-import codegym.project.model.Image;
-import codegym.project.repository.ImageRepository;
-import codegym.project.service.ImageService;
+import codegym.project.model.Mp3File;
+import codegym.project.repository.Mp3FileRepository;
+import codegym.project.service.Mp3FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -14,24 +14,24 @@ import java.nio.file.Paths;
 import java.util.List;
 
 //Đọc comment ở File Service.
-public class ImageServiceImpl implements ImageService {
-
-    //Thư mục lưu ảnh.
-    private String UPLOAD = "upload-dir";
+public class Mp3FileServiceImpl implements Mp3FileService {
+    //Thư lục lưu file mp3.
+    private String UPLOAD = "upload-mp3";
 
     @Autowired
-    private ImageRepository imageRepository;
+    private Mp3FileRepository mp3FileRepository;
 
     @Autowired
     private ResourceLoader resourceLoader;
 
+
     @Override
-    public List<Image> findAll() {
-        return (List<Image>) imageRepository.findAll();
+    public List<Mp3File> findAll() {
+        return (List<Mp3File>) mp3FileRepository.findAll();
     }
 
     @Override
-    public Resource findOneImage(String name) {
+    public Resource findOneMp3File(String name) {
         return resourceLoader.getResource("file:"+UPLOAD+"/"+name);
     }
 
@@ -39,7 +39,7 @@ public class ImageServiceImpl implements ImageService {
     public void create(MultipartFile file) throws IOException {
         if (!file.isEmpty()){
             Files.copy(file.getInputStream(), Paths.get(UPLOAD, file.getOriginalFilename()));
-            imageRepository.save(new Image(file.getOriginalFilename()));
+            mp3FileRepository.save(new Mp3File(file.getOriginalFilename()));
         }
     }
 
@@ -49,7 +49,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public Image findById(Long id) {
-        return imageRepository.findById(id).get();
+    public Mp3File findById(Long id) {
+        return mp3FileRepository.findById(id).get();
     }
 }

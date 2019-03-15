@@ -13,12 +13,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
+//Cho phép Angular kết nối vào Backend.
 @CrossOrigin("http://localhost:4200")
 public class AdminController {
 
     @Autowired
     public AdminService adminService;
 
+    //API trả về List Admin.
     @RequestMapping(value = "/admins", method = RequestMethod.GET)
     public ResponseEntity<List<Admin>> listAllAdmins() {
         List<Admin> accounts = adminService.findAll();
@@ -28,6 +30,7 @@ public class AdminController {
         return new ResponseEntity<List<Admin>>(accounts, HttpStatus.OK);
     }
 
+    //API trả về Admin có ID trên url.
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Admin> getAdminById(@PathVariable("id") long id) {
         System.out.println("Fetching Admin with id " + id);
@@ -39,6 +42,7 @@ public class AdminController {
         return new ResponseEntity<Admin>(account, HttpStatus.OK);
     }
 
+    //API tạo một Admin mới.
     @RequestMapping(value = "/admins", method = RequestMethod.POST)
     public ResponseEntity<Void> createAdmin(@RequestBody Admin admin, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Admin " + admin.getUsername());
@@ -48,6 +52,7 @@ public class AdminController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
+    //API cập nhật một Admin với ID trên url.
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Admin> updateAdmin(@PathVariable("id") long id, @RequestBody Admin admin) {
         System.out.println("Updating Admin " + id);
@@ -68,6 +73,7 @@ public class AdminController {
         return new ResponseEntity<Admin>(currentAdmin, HttpStatus.OK);
     }
 
+    //API xóa một Admin với ID trên url.
     @RequestMapping(value = "/accounts/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Admin> deleteAdmin(@PathVariable("id") long id) {
         System.out.println("Fetching & Deleting Admin with id " + id);

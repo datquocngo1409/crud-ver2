@@ -19,7 +19,9 @@ public class Song {
     @NotEmpty
     private String singer_name;
 
-    private String mp3_link;
+    @OneToOne
+    @JoinColumn(name = "mp3_id")
+    private Mp3File mp3File;
 
     @OneToOne
     @JoinColumn(name = "image_id")
@@ -32,11 +34,11 @@ public class Song {
     public Song() {
     }
 
-    public Song(@NotEmpty String name, String description, @NotEmpty String singer_name, String mp3_link, Image image, SongCategory songCategory) {
+    public Song(@NotEmpty String name, String description, @NotEmpty String singer_name, Mp3File mp3File, Image image, SongCategory songCategory) {
         this.name = name;
         this.description = description;
         this.singer_name = singer_name;
-        this.mp3_link = mp3_link;
+        this.mp3File = mp3File;
         this.image = image;
         this.songCategory = songCategory;
     }
@@ -65,12 +67,12 @@ public class Song {
         this.description = description;
     }
 
-    public String getMp3_link() {
-        return mp3_link;
+    public Mp3File getMp3File() {
+        return mp3File;
     }
 
-    public void setMp3_link(String mp3_link) {
-        this.mp3_link = mp3_link;
+    public void setMp3File(Mp3File mp3File) {
+        this.mp3File = mp3File;
     }
 
     public SongCategory getSongCategory() {
