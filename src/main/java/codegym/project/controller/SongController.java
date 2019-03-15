@@ -61,7 +61,7 @@ public class SongController {
         currentSong.setName(song.getName());
         currentSong.setDescription(song.getDescription());
         currentSong.setSinger_name(song.getSinger_name());
-        currentSong.setImg_link(song.getImg_link());
+        currentSong.setImage(song.getImage());
         currentSong.setMp3_link(song.getMp3_link());
         currentSong.setId(song.getId());
 
