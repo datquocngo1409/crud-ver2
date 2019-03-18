@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//Cho phép Angular có thể truy cập vào backend.
 @CrossOrigin("http://localhost:4200")
 public class SongCategoryController {
-
     @Autowired
-    private SongCategoryService songCategoryService;
+    public SongCategoryService songCategoryService;
 
     //API sẽ trả về List Category.
-    @RequestMapping(value = "/songs/categories", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public ResponseEntity<List<SongCategory>> listAllSongCategories() {
         //Lưu List Category từ Database vào accounts.
         List<SongCategory> accounts = songCategoryService.findAll();
@@ -32,7 +30,7 @@ public class SongCategoryController {
     }
 
     //API sẽ trả về Category có ID trên url.
-    @RequestMapping(value = "/songs/categories/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SongCategory> getSongById(@PathVariable("id") long id) {
         System.out.println("Fetching Song Category with id " + id);
         //Tìm Category có ID truyền vào.

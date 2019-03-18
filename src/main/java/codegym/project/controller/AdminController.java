@@ -16,7 +16,6 @@ import java.util.List;
 //Cho phép Angular kết nối vào Backend.
 @CrossOrigin("http://localhost:4200")
 public class AdminController {
-
     @Autowired
     public AdminService adminService;
 
@@ -34,7 +33,7 @@ public class AdminController {
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Admin> getAdminById(@PathVariable("id") long id) {
         System.out.println("Fetching Admin with id " + id);
-        Admin account= adminService.findById(id);
+        Admin account = adminService.findById(id);
         if (account == null) {
             System.out.println("Admin with id " + id + " not found");
             return new ResponseEntity<Admin>(HttpStatus.NOT_FOUND);
